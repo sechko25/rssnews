@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="clickListener"
+            type="com.example.yetanotherfeed.adapter.ItemListener" />
+
+        <variable
+            name="item"
+            type="com.example.yetanotherfeed.models.Item" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/mediumPadding"
+        android:layout_marginStart="@dimen/smallMargin"
+        android:layout_marginEnd="@dimen/smallMargin"
+        android:layout_marginBottom="@dimen/mediumMargin"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        android:onClick="@{() -> clickListener.onClick(item)}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/mediumMargin"
+                android:layout_weight="9"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/itemTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:titleFeed="@{item}"
+                    tools:text="Tittle" />
+
+                <TextView
+                    android:id="@+id/itemDateTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    app:dateFeed="@{item}"
+                    tools:text="2 hours ago" />
+
+                <TextView
+                    android:id="@+id/itemContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:contentFeed="@{item}"
+                    tools:text="Content" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:imageUrl="@{item.thumbnail}"
+                tools:src="@drawable/ic_broken_image" />
+
+            <ImageView
+                android:id="@+id/isCachedMark"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:isCached="@{item}"
+                tools:src="@drawable/ic_cached_24px"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
